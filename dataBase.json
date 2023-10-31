@@ -1,0 +1,19 @@
+{
+    "users": [
+        {
+            "name": "meninoNey",
+            "password": "ney123",
+            "photo": "ney.png"
+        },
+        {
+            "name": "robozao",
+            "password": "cr7",
+            "photo": "cr.png"
+        },
+        {
+            "name": "gMedina",
+            "password": "gabMed",
+            "photo": "medina.png"
+        }
+    ]
+}

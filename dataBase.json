@@ -6,14 +6,24 @@
             "photo": "ney.png"
         },
         {
-            "name": "robozao",
-            "password": "cr7",
-            "photo": "cr.png"
+            "name": "linus",
+            "password": "pinguim",
+            "photo": "linus.png"
         },
         {
             "name": "gMedina",
             "password": "gabMed",
             "photo": "medina.png"
+        }, 
+        {
+            "name": "lula",
+            "password": "ninefingers",
+            "photo": "lula.png"
+        },
+        {
+            "name": "bolso",
+            "password": "taokay",
+            "photo": "bolso.png"
         }
     ]
 }

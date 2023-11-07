@@ -33,7 +33,7 @@ def user_password_validation(max_attempts=1):
         
         sleep(2)
 
-logado = user_password_validation()
+logado = user_password_validation(3)
 
 if logado:
     print("Bem vindo")

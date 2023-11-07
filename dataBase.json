@@ -1,29 +1,29 @@
 {
     "users": [
         {
-            "name": "meninoNey",
-            "password": "ney123",
-            "photo": "ney.png"
+            "name": "lucas",
+            "password": "lucas123",
+            "photo": "lucas.png"
         },
         {
-            "name": "linus",
-            "password": "pinguim",
-            "photo": "linus.png"
+            "name": "ana",
+            "password": "123ana",
+            "photo": "ana.png"
         },
         {
-            "name": "gMedina",
-            "password": "gabMed",
-            "photo": "medina.png"
+            "name": "davi",
+            "password": "davidavi",
+            "photo": "davi.png"
         }, 
         {
-            "name": "lula",
-            "password": "ninefingers",
-            "photo": "lula.png"
+            "name": "bia",
+            "password": "Bia12",
+            "photo": "bia.png"
         },
         {
-            "name": "bolso",
-            "password": "taokay",
-            "photo": "bolso.png"
+            "name": "matias",
+            "password": "mat123",
+            "photo": "matias.png"
         }
     ]
 }

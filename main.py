@@ -4,7 +4,7 @@ from time import sleep
 
 
 
-def user_password_validation(max_attempts):
+def user_password_validation(max_attempts=1):
 
     # abre um arquivo .json, onde tem as informações sobre os usuários cadastrados
     with open("dataBase.json") as file_json:
@@ -12,11 +12,6 @@ def user_password_validation(max_attempts):
 
     user_list = data_base['users']
 
-    """
-    verifica se o nome fornecido está na base de cadastro. Caso estaja,
-    verifica se a senha está correta. Se o nome estiver cadastrado e a
-    senha estiver correta, retorna True:
-    """
     tentativas = 0
     while True:
         tentativas += 1
@@ -38,7 +33,7 @@ def user_password_validation(max_attempts):
         
         sleep(2)
 
-logado = user_password_validation(1)
+logado = user_password_validation()
 
 if logado:
     print("Bem vindo")

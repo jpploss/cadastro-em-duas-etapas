@@ -1,25 +1,38 @@
 import smtplib
-import email.message
+from email.message import Message 
 
-def send_email(to, max_attempts):  
-    corpo_email = f"""
+def send_alert_email(to, max_attempts):  
+    
+    # criação de um objeto email.message.Message() para representar o email a ser enviado:
+    msg = Message()
+
+    msg['Subject'] = "ALERTA DE SEGURANÇA" # define o assunto do email
+    msg['From'] = 'joaopedro.loss@gmail.com' # define o remetente do email
+    msg['To'] = to # define o destinatário do email
+    password = ''
+
+    msg.add_header('Content-Type', 'text/html') # indica que o conteúdo do email está em HTML
+    email_content = f"""
     <p><b>Alerta</b></p>
     <p>Por {max_attempts} vezes alguém tentou acessar o seu sistema!</p>
-    """
+    """    
+    msg.set_payload(email_content) # define o conteúdo como sendo o corpo do email a ser enviado
 
-    msg = email.message.Message()
-    msg['Subject'] = "ALERTA DE SEGURANÇA"
-    msg['From'] = 'joaopedro.loss@gmail.com'
-    msg['To'] = to
-    password = 'sewwapmfimdurnzb' 
-    msg.add_header('Content-Type', 'text/html')
-    msg.set_payload(corpo_email )
-
+    # faz a conexão com o servidor do gmail:
     s = smtplib.SMTP('smtp.gmail.com: 587')
+
+    # o TLS é um protocolo de segurança que protege a comunicação entre o cliente (seu código Python) 
+    # e o servidor SMTP, garantindo que os dados sejam transmitidos de forma criptografada, tornando
+    # a conexão mais segura
     s.starttls()
-    # Login Credentials for sending the mail
+
+    # tenta fazer o login:
     try:
         s.login(msg['From'], password)
-        s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
     except:
         print("Problema no envio de email para alerta.")
+        return
+    
+    # caso o login tenha dado certo, envia o email:
+    s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+

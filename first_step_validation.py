@@ -43,4 +43,4 @@ def id_password_validation(max_attempts=1):
         if tentativas == max_attempts:
             return None
         
-        sleep(2)
+        sleep(1.8)

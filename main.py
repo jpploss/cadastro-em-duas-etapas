@@ -12,4 +12,4 @@ if name:
     print(f"Bem vindo, {name}!")
 else:
     print("Limite de tentivas excedido. Sistema bloqueado.")
-    send_email(email, max_attempts)
+    send_alert_email(email, max_attempts)

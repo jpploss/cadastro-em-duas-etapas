@@ -4,31 +4,33 @@
             "name": "Lucas",
             "id": "lucas2001",
             "password": "lucas123",
-            "photo": "lucas.png"
+            "photo": "lucas2001.png"
         },
         {
             "name": "Ana",
             "id": "aninha",
             "password": "123ana",
-            "photo": "ana.png"
+            "photo": "aninha.png"
         },
         {
             "name": "Davi",
             "id": "davi123",
             "password": "davidavi",
-            "photo": "davi.png"
+            "photo": "davi123.png"
         }, 
         {
             "name": "Bia",
             "id": "__bia",
             "password": "Bia12",
-            "photo": "bia.png"
+            "photo": "__bia.png"
         },
         {
             "name": "Matias",
             "id": "matias_027",
             "password": "mat1234",
-            "photo": "matias.png"
+            "photo": "matias_027.png"
         }
-    ]
+    ],
+    "quantity": 5,
+    "images_folder_path": "./images/"
 }

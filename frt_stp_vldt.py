@@ -9,12 +9,12 @@ def get_id_password():
     return id, password
 
 # se o id e o password estão cadastrados: retorna o nome do usuário. Caso contrário, retorna None
-def get_user_name(user_list, id, password):
+def id_password_test(user_list, id, password):
     for i in range(len(user_list)):
         if id == user_list[i]['id']:
             if password == user_list[i]['password']:
-                return user_list[i]['name']
-    return None
+                return True
+    return False
 
 def id_password_validation(max_attempts=1, data_base=None):
 
@@ -33,9 +33,8 @@ def id_password_validation(max_attempts=1, data_base=None):
     
         id, password = get_id_password()
 
-        name = get_user_name(user_list, id, password)
-        if name:
-            return id, name
+        if id_password_test(user_list, id, password):
+            return id
         else:
             print("Nome de usuário e/ou senha incorretos")
 

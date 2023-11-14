@@ -29,8 +29,14 @@
             "id": "matias_027",
             "password": "mat1234",
             "photo": "matias_027.png"
+        },
+        {
+            "name": "Joao",
+            "id": "eu",
+            "password": "123jp",
+            "photo": "eu.jpg"
         }
     ],
-    "quantity": 5,
+    "quantity": 6,
     "images_folder_path": "./images/"
 }

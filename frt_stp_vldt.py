@@ -16,11 +16,11 @@ def get_user_name(user_list, id, password):
                 return user_list[i]['name']
     return None
 
-def id_password_validation(max_attempts=1):
+def id_password_validation(max_attempts=1, data_base=None):
 
-    # abre um arquivo .json, onde tem as informações sobre os usuários cadastrados
-    with open("dataBase.json") as file_json:
-        data_base = json.load(file_json) # ususario recebe um dicionário correspondente ao conteúdo do .json
+    if data_base == None:
+        print("Banco de dados não encontrado")
+        exit(1)
 
     user_list = data_base['users']
 
@@ -35,7 +35,7 @@ def id_password_validation(max_attempts=1):
 
         name = get_user_name(user_list, id, password)
         if name:
-            return name
+            return id, name
         else:
             print("Nome de usuário e/ou senha incorretos")
 

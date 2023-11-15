@@ -17,7 +17,7 @@ def get_faces_in_frame(frame):
     faces = fr.face_encodings(frame)
     return faces
 
-def face_valid(faces, face_ref):
+def face_is_valid(faces, face_ref):
     if faces != None:
         for i in range(len(faces)):
             result = fr.compare_faces([face_ref], faces[i])[0]
@@ -25,13 +25,19 @@ def face_valid(faces, face_ref):
                 return True
     return False
 
-def DrawInFaces(frame_rgb, frame, face_ref=None):
-    faces = fr.face_locations(frame_rgb)
-    for face in faces:
-        y1, x1, y2, x2 = face[0], face[1], face[2], face[3]
+def DrawInFaces(frame_rgb, faces_found, frame, face_ref=[]):
+    faces_loc = fr.face_locations(frame_rgb)
 
-        if face_ref:
-            if fr.compare_faces([face_ref], face)[0]:
+    if len(faces_loc) < 1:
+        return frame
+    
+    for face_loc, face_found in zip(faces_loc, faces_found):
+        y1, x1, y2, x2 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]
+
+        # se houver alguma face de referência, será desenhado um retangulo verde no rosto
+        # correspondente presente no frame
+        if len(face_ref) > 0:
+            if fr.compare_faces([face_ref], face_found)[0]:
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0,180,0), 2)
                 continue
 
@@ -48,38 +54,45 @@ def CloseCam(cam):
 def facial_validation(imgRef_url, index_cam=0):
     face_ref = get_encoding_face(imgRef_url)
     
-    face_has_been_found = False
-    valid_face = False
-
+    # sobre a classe VideoCapture(): https://docs.opencv.org/4.x/dd/d43/tutorial_py_video_display.html
     webcam = cv2.VideoCapture(index_cam) # faz a conexão com a webcam
 
     if webcam.isOpened(): # verifica se a conexão com a webcam foi bem sucedida
-        validation, frame = webcam.read() # le a imagem da webcam
+        
+        validation = True
+        count = 0 # variável usada para aguardar um determinado tempo até retornar algo
 
-        count = 0
-        while validation and count <= 100:
+        while validation and count <= 40:
+            
             count += 1
-            validation, frame = webcam.read()
-            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            validation, frame = webcam.read() # le imagem da webcam
+
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # converte a imagem para rgb
 
             faces_found = get_faces_in_frame(frame_rgb)
 
             if faces_found:
-                frame = DrawInFaces(frame_rgb, frame, face_ref)
-                if face_valid(faces_found, face_ref):
-                    face_has_been_found = True
-                    valid_face = True
-                elif count == 10:
-                    face_has_been_found = True
-                    valid_face = False
-            elif count == 10:
-                face_has_been_found = False
-                valid_face = False
-
-            cv2.imshow("Face validation", frame)
-            cv2.waitKey(1)
+                if count >= 3: # aguarda count chegar a três para desenhar um retângulo verde na face válida, se tiver
+                    frame = DrawInFaces(frame_rgb, faces_found, frame, face_ref)
+                else:
+                    frame = DrawInFaces(frame_rgb, faces_found, frame)
+                
+                if count >= 5: # a partir de count == 5, começa a poder retornar algo
+                    if face_is_valid(faces_found, face_ref):
+                        return True,True
+                    elif count >= 10:
+                        return True, False
+                
+            elif count >= 20:
+                return False, False
             
-    
-    CloseCam(webcam)
-    return face_has_been_found, valid_face
+            cv2.waitKey(1)
+            cv2.imshow("Face validation", frame)
+    else:
+        print("Problema na conexão com a webcam.")
+        exit(1)
+
+    CloseCam(webcam)        
+    return False, False
 

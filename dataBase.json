@@ -4,19 +4,19 @@
             "name": "Gabriel",
             "id": "medina",
             "password": "surf",
-            "photo": "medina.png"
+            "photo": "medina.jpg"
         },
         {
             "name": "Linus",
             "id": "linux",
             "password": "pinguim",
-            "photo": "linux.png"
+            "photo": "linux.jpg"
         }, 
         {
-            "name": "Messi",
-            "id": "lionel",
-            "password": "argentina",
-            "photo": "lionel.png"
+            "name": "Cristiano",
+            "id": "cr7",
+            "password": "portugal",
+            "photo": "cr7.jpeg"
         },
         {
             "name": "Neymar",
@@ -29,8 +29,14 @@
             "id": "eu",
             "password": "123jp",
             "photo": "eu.jpg"
+        },
+        {
+            "name": "leleu",
+            "id": "leo",
+            "password": "leo123",
+            "photo": "leo.png"
         }
     ],
-    "quantity": 5,
+    "quantity": 6,
     "images_folder_path": "./images/"
 }

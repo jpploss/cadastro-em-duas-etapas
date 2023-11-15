@@ -7,6 +7,11 @@ def get_photo_name(id, data_base):
         if data_base["users"][i]["id"] == id:
             return data_base["users"][i]["photo"]
 
+def get_user_name(id, data_base):
+    for i in range(data_base["quantity"]):
+        if data_base["users"][i]["id"] == id:
+            return data_base["users"][i]["name"]
+
 # limpa o terminal, só para melhorar a estética
 os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -24,7 +29,7 @@ if id:
     face_found, face_is_valid = facial_validation(img_path)
     if face_found:
         if face_is_valid:
-            print(f"Bem vindo, {name}!")
+            print(f"Bem vindo, {get_user_name(id, data_base)}!")
         else:
             print("Acesso negado.")
     else:

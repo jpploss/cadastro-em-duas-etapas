@@ -11,7 +11,7 @@
     - Caso a etapa 02.1 tenha sido bem sucedida, ocorre a segunda etapa (reconhecimento facial)
 
 ## Configurações:
-- Caminho para a pasta com as imagens deve ser fornecido no campo "images_folder_path" do .json
+- O caminho para a pasta com as imagens deve ser fornecido no campo "images_folder_path" do .json
 - O id de um usuário deve ser único
 - O campo "quantity" corresponde à quantidade de usuários e deve estar sempre atualizado para o funcionamento correto do programa
 

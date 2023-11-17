@@ -4,7 +4,7 @@ from time import sleep
 
 # retorna o id e o password lidos via terminal
 def get_id_password():
-    id = input("Digite o seu id: ").strip()
+    id = input("Digite o seu ID: ").strip()
     password = input("Digite sua senha: ").strip()
     return id, password
 

@@ -2,8 +2,19 @@ import cv2
 import face_recognition as fr
 
 def get_encoding_face(img_url):
+
     img = cv2.imread(img_url)
-    
+
+    # caso a img não seja None, o python aponta um erro ao comparar uma matriz com None
+    # por isso é preciso colocar o tratamento de erro em um try/except:
+    try: 
+        if img == None: # se não leu o cv2.imread() retorna None
+            print(f"Erro ao ler a imagem 'f{img_url}'.")
+            print("Verifique se o nome está correto.")
+            exit(1)
+    except:
+        pass
+
     # o cv2 usa o por padrão BGR, para converter em RBG:
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -80,11 +91,14 @@ def facial_validation(imgRef_url, index_cam=0):
                 
                 if count >= 5: # a partir de count == 5, começa a poder retornar algo
                     if face_is_valid(faces_found, face_ref):
+                        CloseCam(webcam)
                         return True,True
                     elif count >= 10:
+                        CloseCam(webcam)
                         return True, False
                 
             elif count >= 20:
+                CloseCam(webcam)
                 return False, False
             
             cv2.waitKey(1)

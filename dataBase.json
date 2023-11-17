@@ -11,7 +11,7 @@
             "id": "linux",
             "password": "pinguim",
             "photo": "linux.jpg"
-        }, 
+        },
         {
             "name": "Cristiano",
             "id": "cr7",
@@ -22,7 +22,7 @@
             "name": "Neymar",
             "id": "ney",
             "password": "arabia",
-            "photo": "ney.png"
+            "photo": "ney.jpg"
         },
         {
             "name": "Joao",

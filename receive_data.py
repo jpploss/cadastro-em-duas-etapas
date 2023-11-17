@@ -22,7 +22,10 @@ def get_photo(id, img_path):
     print(f"Para completar o cadastro adicione uma foto do seu rosto em '{img_path}'. Lembrando que ela deve ter o mesmo nome do ID fornecido.")
     photo_ext = input("Digite a extensão da foto salva (ex. png, jpeg, jpg): ")
     photo_name = id + '.' + photo_ext
+
+    count = 0
     while True:
+        count += 1
         try:
             with open(img_path+photo_name, "r") as f:
                 return photo_name
@@ -37,6 +40,10 @@ def get_photo(id, img_path):
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f"Não foi possível encontrar o arquivo '{photo_name}' em '{img_path}'.")   
         print(f"Verifique se o nome da foto é '{photo_name}' e está salva em '{img_path}'.")
+
+        if count == 15:
+            return None
+
         sleep(1)
 
 #recebendo dados de cadastro do usuário pelo terminal
@@ -44,7 +51,11 @@ def Get_user (img_path, users):
     nome = input("Digite o nome para cadastro: ")
     id = get_id(users)
     password = input("Digite a senha para cadastro: ")
+    
     photo_name = get_photo(id, img_path)
+    if photo_name == None:
+        return None
+    
     print("Cadastro feito com sucesso.")
     user = {
         "name": nome,

@@ -24,17 +24,38 @@ def Convert_user_to_JSON (user):
     return user_json
 
 #adicionar usuário no dataBase,json
-def Add_user_data (new_user, data_base_json):
-    # abre um arquivo .json, onde tem as informações sobre os usuários cadastrados
-    with open("dataBase.json", 'r') as file_json:
-        data_base_json = json.load(file_json) # ususario recebe um dicionário correspondente ao conteúdo do .json
+def Add_user_data (new_user):
+    arq = 'dataBase.json'
+    try:
+        # Tenta abrir o arquivo no modo de leitura e escrita
+        with open(arq, 'r+') as file_json:
+            # Tenta carregar o conteúdo do arquivo JSON
+            data_base_json = json.load(file_json)
 
-    # Adicionando o novo usuário à lista existente
-    data_base_json["users"].append(new_user)
+            # Adicionando o novo usuário à lista existente
+            data_base_json["users"].append(new_user)
 
-    # Acrescentando uma unidade ao atributo "quantity"
-    data_base_json["quantity"] += 1
+            # Acrescentando uma unidade ao atributo "quantity"
+            data_base_json["quantity"] += 1
 
-    # Escrevendo de volta ao arquivo JSON
-    with open("dataBase.json", 'w') as json_file:
-        json.dump(data_base_json, json_file, indent=4)
+            # Move o cursor para o início do arquivo antes de escrever
+            file_json.seek(0)
+
+            # Escreve de volta ao arquivo JSON
+            json.dump(data_base_json, file_json, indent=4)
+        
+    except FileNotFoundError:
+        # Se o arquivo não existe, cria um novo
+        with open(arq, 'w') as file_json:
+            # Cria um novo dicionário com o novo usuário
+            data_base_json = {
+                "users": [new_user],
+                "quantity": 1
+            }
+
+            # Escreve o dicionário no arquivo JSON
+            json.dump(data_base_json, file_json, indent=4)
+
+user = Get_user()
+
+Add_user_data(user)

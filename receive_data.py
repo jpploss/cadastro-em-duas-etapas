@@ -1,18 +1,56 @@
 # Importar o módulo
 import json
+import cv2
+from time import sleep
+import os
+
+def verify_id(id, users):
+    for i in range(len(users)):
+        if id == users[i]["id"]:
+            return False
+    return True
+
+def get_id(users):
+    id = input("Digite o ID para cadastro: ")
+    while True:
+        if verify_id(id, users):
+            return id
+        os.system('cls' if os.name == 'nt' else 'clear')
+        id = input(f"O ID {id} já existe.\nDigite outro ID para cadastro: ")
+
+def get_photo(id, img_path):
+    print(f"Para completar o cadastro adicione uma foto do seu rosto em '{img_path}'. Lembrando que ela deve ter o mesmo nome do ID fornecido.")
+    photo_ext = input("Digite a extensão da foto salva (ex. png, jpeg, jpg): ")
+    photo_name = id + '.' + photo_ext
+    while True:
+        # try:
+        #     with open(img_path+photo_name, "r") as f:
+        #         return photo_name
+        # except FileNotFoundError as e:
+        #     pass
+
+        # file_path = os.path.join(img_path, photo_name)
+        # print(f"Checking file path: {file_path}")
+        # if os.path.isfile(file_path):
+        #     break
+        
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f"Não foi possível encontrar o arquivo '{photo_name}' em '{img_path}'.")   
+        print(f"Verifique se o nome da foto é '{photo_name}' e está salva em '{img_path}'.")
+        sleep(1)
 
 #recebendo dados de cadastro do usuário pelo terminal
-def Get_user ():
+def Get_user (img_path, users):
     nome = input("Digite o nome para cadastro: ")
-    id = input("Digite o ID para cadastro: ")
+    id = get_id(users)
     password = input("Digite a senha para cadastro: ")
-    photo = input("Digite o nome do arquivo .jpg para cadastro: ")
-
+    photo_name = get_photo(id, img_path)
+    print("Cadastro feito com sucesso.")
     user = {
         "name": nome,
         "id": id,
         "password": password,
-        "photo": photo
+        "photo": photo_name
     }
 
     return user

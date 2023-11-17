@@ -1,6 +1,12 @@
 import smtplib
 from email.message import Message 
 
+# retorna uma tupla com a configuração do sistem: limite de tantativas e email para envio de alerta
+def sys_config():
+    max_attempts = int(input("Digite um número máximo de tentativas para o acesso ao sistema via id e senha? "))
+    email = input("Qual será o email para enviar um alerta sobre um possível ataque ao sistema? ")
+    return max_attempts, email
+
 def send_alert_email(to, max_attempts):  
     
     # criação de um objeto email.message.Message() para representar o email a ser enviado:

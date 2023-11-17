@@ -30,7 +30,7 @@ while True:
     
     elif acao == 2:
         new_user = Get_user()
-        Add_user_data(new_user, data_base)
+        Add_user_data(new_user)
 
     elif acao == 3:
         max_attempts = int(input("Digite um número máximo de tentativas para o acesso ao sistema via id e senha? "))

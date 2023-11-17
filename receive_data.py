@@ -56,6 +56,3 @@ def Add_user_data (new_user):
             # Escreve o dicionário no arquivo JSON
             json.dump(data_base_json, file_json, indent=4)
 
-user = Get_user()
-
-Add_user_data(user)

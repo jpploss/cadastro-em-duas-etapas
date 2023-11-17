@@ -23,17 +23,17 @@ def get_photo(id, img_path):
     photo_ext = input("Digite a extensão da foto salva (ex. png, jpeg, jpg): ")
     photo_name = id + '.' + photo_ext
     while True:
-        # try:
-        #     with open(img_path+photo_name, "r") as f:
-        #         return photo_name
-        # except FileNotFoundError as e:
-        #     pass
+        try:
+            with open(img_path+photo_name, "r") as f:
+                return photo_name
+        except FileNotFoundError as e:
+            pass
 
         # file_path = os.path.join(img_path, photo_name)
         # print(f"Checking file path: {file_path}")
         # if os.path.isfile(file_path):
         #     break
-        
+
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f"Não foi possível encontrar o arquivo '{photo_name}' em '{img_path}'.")   
         print(f"Verifique se o nome da foto é '{photo_name}' e está salva em '{img_path}'.")

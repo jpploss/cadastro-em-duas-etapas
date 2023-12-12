@@ -32,6 +32,13 @@ def face_is_valid(faces, face_ref):
     if faces != None:
         for i in range(len(faces)):
             result = fr.compare_faces([face_ref], faces[i])[0]
+
+            # The compare_faces function in the face_recognition library is typically used to compare 
+            # a list of known face encodings (representations of facial features) against a single face 
+            # encoding to determine if they match. The function returns a list of boolean values, where 
+            # each boolean indicates whether the corresponding face in the list of known faces matches 
+            # the input face.
+
             if result:
                 return True
     return False

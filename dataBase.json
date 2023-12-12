@@ -35,8 +35,14 @@
             "id": "leo",
             "password": "lx/LIssR*lbQZzKcSp8mXuqPHFy2c1g==*n9yPYurxquYO+qDdx2Ixug==*KQFmT44tMvTYJ5Q+ahZDiw==",
             "photo": "leo.png"
+        },
+        {
+            "name": "eu",
+            "id": "aa",
+            "password": "rQq1*m3TJPeRguN0+V5WSCaqp5Q==*W8o/jD8d1++kH3D/KTPYwg==*UWvy9ZF6KMrek5eBvqRvgQ==",
+            "photo": "aa.jpg"
         }
     ],
-    "quantity": 6,
+    "quantity": 7,
     "images_folder_path": "./images/"
 }

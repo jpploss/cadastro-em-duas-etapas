@@ -3,7 +3,7 @@ from send_email import *
 from snd_stp_vldt import *
 from receive_data import *
 
-def get_photo_name(id, data_base):    
+def get_photo_name(id, data_base):
     for i in range(len(data_base["users"])):
         if data_base["users"][i]["id"] == id:
             return data_base["users"][i]["photo"]
@@ -30,6 +30,7 @@ block_time = 60 # tempo inicial de bloqueio (1 minuto)
 acao = 0
 while acao != 1:
     clear_terminal()
+
     #lendo o que o usuário deseja fazer
     acao = int(input("01 - Sair.\n02 - Cadastrar novo usuario.\n03 - Acessar sistema.\nDigite um numero: "))
 

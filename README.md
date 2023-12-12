@@ -1,8 +1,7 @@
 # two-step-validation
 ## O funcionamento do sistema se deve da seguinte forma:
 ### 01. Etapa de configuração do sistema:
-  - É solicitado um número máximo de tentativas para a primeira etapa (id e senha)
-  - É solicitado um email para o envio de uma mensagem de alerta caso as tentativas na primeira etapa tenham excedido o limite fornecido
+  - É solicitado um email para o envio de uma mensagem de alerta caso se detecte um possível ataque
 ### 02. Etapa de login:
 ### - 02.1:
     - É solicitado o id e a senha

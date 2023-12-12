@@ -4,7 +4,7 @@ from snd_stp_vldt import *
 from receive_data import *
 
 def get_photo_name(id, data_base):    
-    for i in range(data_base["quantity"]):
+    for i in range(len(data_base["users"])):
         if data_base["users"][i]["id"] == id:
             return data_base["users"][i]["photo"]
 
@@ -40,6 +40,7 @@ while acao != 1:
         new_user = Get_user(data_base["images_folder_path"], data_base["users"])
         if new_user:
             Add_user_data(new_user)
+            data_base["users"].append(new_user)
             print(f"Usuário de ID '{new_user['id']}' cadastrado.")
         else:
             clear_terminal()

@@ -43,7 +43,7 @@ def get_photo(id, img_path):
         sleep(1)
 
 #recebendo dados de cadastro do usuário pelo terminal
-def Get_user (img_path, users):
+def Get_user(img_path, users):
     nome = input("Digite o nome para cadastro: ")
     id = get_id(users)
     password = cryptocode.encrypt(input("Digite a senha para cadastro: ").strip(), "py")

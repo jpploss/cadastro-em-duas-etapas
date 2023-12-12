@@ -3,6 +3,7 @@ import json
 import cv2
 from time import sleep
 import os
+import cryptocode
 
 def verify_id(id, users):
     for i in range(len(users)):
@@ -45,7 +46,7 @@ def get_photo(id, img_path):
 def Get_user (img_path, users):
     nome = input("Digite o nome para cadastro: ")
     id = get_id(users)
-    password = input("Digite a senha para cadastro: ")
+    password = cryptocode.encrypt(input("Digite a senha para cadastro: ").strip(), "py")
     
     photo_name = get_photo(id, img_path)
     if photo_name == None:

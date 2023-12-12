@@ -1,18 +1,20 @@
 import json # útil para lidar com a base de usuário (arquivo .json)
 import os
 from time import sleep
+import cryptocode
 
 # retorna o id e o password lidos via terminal
 def get_id_password():
     id = input("Digite o seu ID: ").strip()
-    password = input("Digite sua senha: ").strip()
+    password = cryptocode.encrypt(input("Digite sua senha: ").strip(), "py")
+
     return id, password
 
 # se o id e o password estão cadastrados: retorna o nome do usuário. Caso contrário, retorna None
 def id_password_test(user_list, id, password):
     for i in range(len(user_list)):
         if id == user_list[i]['id']:
-            if password == user_list[i]['password']:
+            if cryptocode.decrypt(password, "py") == cryptocode.decrypt(user_list[i]['password'], "py"):
                 return True
     return False
 

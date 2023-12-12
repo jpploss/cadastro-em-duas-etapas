@@ -16,23 +16,25 @@ def get_user_name(id, data_base):
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-# limpa o terminal, só para melhorar a estética
+# limpa o terminal
 clear_terminal()
 
 # abre um arquivo .json, onde tem as informações sobre os usuários cadastrados
 with open("dataBase.json") as file_json:
     data_base = json.load(file_json) # ususario recebe um dicionário correspondente ao conteúdo do .json
 
-max_attempts, email = sys_config()
+email = sys_config()
 
-while True:
+block_time = 60 # tempo inicial de bloqueio (1 minuto)
+
+acao = 0
+while acao != 1:
     clear_terminal()
     #lendo o que o usuário deseja fazer
     acao = int(input("01 - Sair.\n02 - Cadastrar novo usuario.\n03 - Acessar sistema.\nDigite um numero: "))
 
     if acao == 1:
         print("\nSAINDO DO PROGRAMA")
-        break
     
     elif acao == 2:
         new_user = Get_user(data_base["images_folder_path"], data_base["users"])
@@ -47,8 +49,15 @@ while True:
 
 
     elif acao == 3:
+        id = id_password_validation(2, data_base)
+        while(not id):
+            clear_terminal()
+            print(f"Limite de tentivas excedido. Sistema bloqueado por {(block_time/60):.0f} minuto(s).")
+            send_alert_email(email)
+            sleep(block_time)
+            block_time *= 2
+            id = id_password_validation(2, data_base)
 
-        id = id_password_validation(max_attempts, data_base)
         if id:
             print("Vamos para a segunda etapa")
             img_path = data_base["images_folder_path"] + get_photo_name(id, data_base)
@@ -59,10 +68,7 @@ while True:
                 else:
                     print("Acesso negado.")
             else:
-                print("Face não detectada.")
-        else:
-            print("Limite de tentivas excedido. Sistema bloqueado.")
-            send_alert_email(email, max_attempts)
+                print("Face não detectada.")   
         sleep(2)
     else:
         print("Opção inválida.")
